@@ -1,19 +1,21 @@
 package com.example.demo;
 
-import com.example.demo.controllers.profile;
 import org.springframework.boot.SpringApplication;
-import java.io.File;
-;
-
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
-//@ComponentScan({"com.example.demo", "controllers"})
+@RestController
 public class DemoApplication {
 
-    //public static void main(String[] args) {
-        //new File(MainController.uploadDirectory).mkdir();
-        //SpringApplication.run(DemoApplication.class, args);
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApplication.class, args);
     }
 
-//}
+    @GetMapping("/hello")
+    public String sayHello(@RequestParam(value = "myName", defaultValue = "World") String name) {
+        return String.format("Hello %s!", name);
+    }
+}
