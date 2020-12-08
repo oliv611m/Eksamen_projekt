@@ -11,9 +11,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 //@ComponentScan({"com.example.demo", "controllers"})
 public class DemoApplication {
 
-    public static void main(String[] args) {
+    //public static void main(String[] args) {
         //new File(MainController.uploadDirectory).mkdir();
-        SpringApplication.run(DemoApplication.class, args);
+        //SpringApplication.run(DemoApplication.class, args);
     }
 
-}
+//}
