@@ -1,16 +1,26 @@
 package com.example.demo.models;
 
-public class customer {
+public class Employee {
+    private int emp_id;
     private String name;
-    private int cvrnr;
+    private String surname;
     private String mail;
     private String password;
 
-    public customer(String name, int cvrnr, String mail, String password) {
+    public Employee(int emp_id, String name, String surname, String mail, String password) {
+        this.emp_id = emp_id;
         this.name = name;
-        this.cvrnr = cvrnr;
+        this.surname = surname;
         this.mail = mail;
         this.password = password;
+    }
+
+    public int getEmp_id() {
+        return emp_id;
+    }
+
+    public void setEmp_id(int emp_id) {
+        this.emp_id = emp_id;
     }
 
     public String getName() {
@@ -21,12 +31,12 @@ public class customer {
         this.name = name;
     }
 
-    public int getCvrnr() {
-        return cvrnr;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setCvrnr(int cvrnr) {
-        this.cvrnr = cvrnr;
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     public String getMail() {
