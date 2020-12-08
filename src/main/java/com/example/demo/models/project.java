@@ -7,62 +7,31 @@ public class project {
     private int totalPrice;
     private int startDate;
     private int endDate;
+    private int workingDays;
+    private int workingHours;
 
-    public project(String name, int numberOfemp, int dayPrice, int totalPrice, int startDate, int endDate) {
-        this.name = name;
-        this.numberOfemp = numberOfemp;
-        this.dayPrice = dayPrice;
-        this.totalPrice = totalPrice;
-        this.startDate = startDate;
-        this.endDate = endDate;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getName() {
-        return name;
-    }
+    public int getNumberOfemp() { return numberOfemp; }
+    public void setNumberOfemp(int numberOfemp) { this.numberOfemp = numberOfemp; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public int getDayPrice() { return dayPrice; }
+    public void setDayPrice(int dayPrice) { this.dayPrice = dayPrice; }
 
-    public int getNumberOfemp() {
-        return numberOfemp;
-    }
+    public int getTotalPrice() { return totalPrice; }
+    public void setTotalPrice(int totalPrice) { this.totalPrice = totalPrice; }
 
-    public void setNumberOfemp(int numberOfemp) {
-        this.numberOfemp = numberOfemp;
-    }
+    public int getStartDate() { return startDate; }
+    public void setStartDate(int startDate) { this.startDate = startDate; }
 
-    public int getDayPrice() {
-        return dayPrice;
-    }
+    public int getEndDate() { return endDate; }
+    public void setEndDate(int endDate) { this.endDate = endDate; }
 
-    public void setDayPrice(int dayPrice) {
-        this.dayPrice = dayPrice;
-    }
+    public int getWorkingDays() { return workingDays; }
+    public void setWorkingDays(int workingDays) { this.workingDays = workingDays; }
 
-    public int getTotalPrice() {
-        return totalPrice;
-    }
-
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public int getStartDate() {
-        return startDate;
-    }
-
-    public void setStartDate(int startDate) {
-        this.startDate = startDate;
-    }
-
-    public int getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(int endDate) {
-        this.endDate = endDate;
-    }
+    public int getWorkingHours(){ return workingHours; }
+    public void setWorkingHours(int workingHours){ this.workingHours = workingHours; }
 
 }
