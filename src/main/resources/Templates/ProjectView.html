@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View</title>
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+<body>
+<h1>Dit projekt</h1>
+<p th:text="'Name: '+ ${project.projectName}"/>
+<p th:text="'Number of employee'+${project.numberOfemp}"/>
+<p th:text="'Your total price'+${project.totalPrice}"/>
+<p th:text="'Your start date'+${project.startDay}"/>
+<p th:text="'Your end date'+${project.endDay}"/>
+<p th:text="'number of days during your projekt'+${project.workingDays}"/>
+<p th:text="'number of hours during your projekt'+${project.workingHours}"/>
+<a href="/OpretProjekt">Opret nyt projekt</a>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.project;
+import com.example.demo.models.Project;
 import com.example.demo.services.ProjectCalculator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,13 +12,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class ProjectHubCreateP {
 
     @GetMapping("/OpretProjekt")
-    public String OpretProjekt(Model model){
-        model.addAttribute("OpretProjekt", new project());
+    public String showProjectCreationPage(Model model){
+        model.addAttribute("project", new Project());
         return "ProjectHubCreateP";
     }
+
     @PostMapping("/OpretProjekt")
-    public String showResult(@ModelAttribute project OpretProjekt, Model model){
-        model.addAttribute("OpretProjekt", OpretProjekt);
-        return "ProjektVeiw";
+    public String createProject(@ModelAttribute Project project, Model model){
+        ProjectCalculator calculator = new ProjectCalculator();
+
+        int workingDays = calculator.getWorkingDays(project.getStartDay(), project.getEndDay());
+        project.setWorkingDays(workingDays);
+        int workingHours = calculator.getWorkingHours(workingDays);
+        project.setWorkingHours(workingHours);
+        int totalPrice = calculator.getTotalPrice(workingDays, project.getDayPrice());
+        project.setTotalPrice(totalPrice);
+
+        model.addAttribute("project", project);
+        return "ProjectView";
     }
 }

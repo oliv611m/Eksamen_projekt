@@ -9,15 +9,16 @@
 
 <h1>Opret et projekt</h1>
 
-<form action="#" th:action="@{/OpretProjekt}" th:object="${OpretProjekt}" method="post"></form>
+<form action="#" th:action="@{/OpretProjekt}" th:object="${project}" method="post">
+    <p>Name : <input type="text" th:field="*{projectName}"></p>
+    <p>Number of employee : <input type="text" th:field="*{numberOfemp}"/></p>
+    <p>Your day price : <input type="text" th:field="*{dayPrice}"/></p>
+    <p>Your start date : <input type="text" th:field="*{startDay}"/> </p>
+    <p>Your end date <input type="text" th:field="*{endDay}"></p>
 
-<p>Name : <input type="text" th:field="*{name}"></p>
-<p>Number of employee : <input type="text" th:field="*{numberOfemp}"/></p>
-<p>Your day price : <input type="text" th:field="*{dayPrice}"/></p>
-<p>Your start date : <input type="text" th:field="*{startdate}"/> </p>
-<p>Your end date <input type="text" th:field="*{endDate}"></p>
+    <p><input type="submit" value="Opret dit projekt"/></p>
+</form>
 
-<p><input type="submit" value="Opret dit projekt"/></p>
 
 
 
