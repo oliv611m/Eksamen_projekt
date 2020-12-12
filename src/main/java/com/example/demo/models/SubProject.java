@@ -10,15 +10,6 @@ public class SubProject {
 
     public SubProject(){}
 
-    public SubProject(String subProjectName, String procentDays, String procentHours, String procentPrices, String procentEmp, int estimation) {
-        this.subProjectName = subProjectName;
-        this.procentDays = procentDays;
-        this.procentHours = procentHours;
-        this.procentPrices = procentPrices;
-        this.procentEmp = procentEmp;
-        this.estimation = estimation;
-    }
-
     public String getSubProjectName() { return subProjectName; }
     public void setSubProjectName(String subProjectName) { this.subProjectName = subProjectName; }
 
@@ -36,6 +27,5 @@ public class SubProject {
 
     public int getEstimation() { return estimation; }
     public void setEstimation(int estimation) { this.estimation = estimation; }
-
 
 }

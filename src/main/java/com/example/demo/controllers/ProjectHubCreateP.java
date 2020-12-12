@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ProjectHubCreateP {
+    private Project project;
 
     @GetMapping("/OpretProjekt")
     public String showProjectCreationPage(Model model){
@@ -31,6 +32,8 @@ public class ProjectHubCreateP {
         int totalPrice = calculator.getTotalPrice(workingDays, project.getDayPrice());
         project.setTotalPrice(totalPrice);
 
+        this.project = project;
+
         model.addAttribute("project", project);
         return "ProjectView";
     }
@@ -42,23 +45,22 @@ public class ProjectHubCreateP {
         }
 
     @PostMapping("/OpretSubProject")
-    public String createSubProject(@ModelAttribute Project project, SubProject subProject, Model model){
+    public String createSubProject(@ModelAttribute SubProject subProject, Model model){
         ProjectCalculator calculator = new ProjectCalculator();
-        
-        String procentDays = calculator.getProcent(subProject.getEstimation(), project.getWorkingDays());
+
+        String procentDays = calculator.getProcent(subProject.getEstimation(), this.project.getWorkingDays());
         subProject.setProcentDays(procentDays);
 
-        String procentHours = calculator.getProcent(subProject.getEstimation(), project.getWorkingHours());
+        String procentHours = calculator.getProcent(subProject.getEstimation(), this.project.getWorkingHours());
         subProject.setProcentHours(procentHours);
 
-        String procentPric = calculator.getProcent(subProject.getEstimation(), project.getTotalPrice());
+        String procentPric = calculator.getProcent(subProject.getEstimation(), this.project.getTotalPrice());
         subProject.setProcentPrices(procentPric);
 
-        String procentEmp = calculator.getProcent(subProject.getEstimation(), project.getNumberOfemp());
+        String procentEmp = calculator.getProcent(subProject.getEstimation(), this.project.getNumberOfemp());
         subProject.setProcentEmp(procentEmp);
 
         model.addAttribute("subProject", subProject);
-        model.addAttribute("project",project);
         return "SubProjectView";
     }
 
