@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.Project;
+import com.example.demo.models.SubProject;
 import com.example.demo.services.ProjectCalculator;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,12 +24,42 @@ public class ProjectHubCreateP {
 
         int workingDays = calculator.getWorkingDays(project.getStartDay(), project.getEndDay());
         project.setWorkingDays(workingDays);
+
         int workingHours = calculator.getWorkingHours(workingDays);
         project.setWorkingHours(workingHours);
+
         int totalPrice = calculator.getTotalPrice(workingDays, project.getDayPrice());
         project.setTotalPrice(totalPrice);
 
         model.addAttribute("project", project);
         return "ProjectView";
     }
+
+    @GetMapping("/OpretSubProject")
+        public String showSubProjectCreationPage(Model model){
+        model.addAttribute("subProject", new SubProject());
+        return "SubProject";
+        }
+
+    @PostMapping("/OpretSubProject")
+    public String createSubProject(@ModelAttribute Project project, SubProject subProject, Model model){
+        ProjectCalculator calculator = new ProjectCalculator();
+        
+        String procentDays = calculator.getProcent(subProject.getEstimation(), project.getWorkingDays());
+        subProject.setProcentDays(procentDays);
+
+        String procentHours = calculator.getProcent(subProject.getEstimation(), project.getWorkingHours());
+        subProject.setProcentHours(procentHours);
+
+        String procentPric = calculator.getProcent(subProject.getEstimation(), project.getTotalPrice());
+        subProject.setProcentPrices(procentPric);
+
+        String procentEmp = calculator.getProcent(subProject.getEstimation(), project.getNumberOfemp());
+        subProject.setProcentEmp(procentEmp);
+
+        model.addAttribute("subProject", subProject);
+        model.addAttribute("project",project);
+        return "SubProjectView";
+    }
+
 }

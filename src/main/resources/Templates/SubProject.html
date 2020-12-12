@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sub Project</title>
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+<body>
+
+<h>Break it down baby</h>
+
+<form action="#" th:action="@{/OpretSubProject}" th:object="${subProject}" method="post">
+
+    <p>Name : <input type="text" th:field="*{subProjectName}"></p>
+    <p>Estimation : <input type="text" th:field="*{estimation}"></p>
+    <p><input type="submit" value="Opret dit Sub-projekt"/></p>
+</form>
+
+</body>
+</html>

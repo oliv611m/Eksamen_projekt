@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sub View</title>
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+<body>
+<h1>Sub p view</h1>
+
+<p th:text="'Sub project name ' +${subProject.subProjectName}">
+<p th:text="'Your estemation ' +${subProject.estimation}">
+<p th:text="'Days in % ' +${subProject.procentDays}">
+<p th:text="'Hours in % ' +${subProject.procentHours}">
+<p th:text="'Price in % ' +${subProject.procentPrices}">
+<p th:text="'Employee % ' +${subProject.procentEmp}">
+
+    <a href="/SubProjekt">Opret nyt sub projekt</a>
+</body>
+</html>
