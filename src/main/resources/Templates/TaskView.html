@@ -7,13 +7,13 @@
 </head>
 <body>
 <h1>Task</h1>
-<p th:text="'Task Name :' +${task.name}"/>
-<p th:text="'Description :' +${task.description}"/>
-<p th:text="'estimation :' +${task.procentDays}"/>
-<p th:text="'procentDays' +${task.procentDays}"/>
-<p th:text="'procentHours' +${task.procentHours}"/>
-<p th:text="'procentPrices' +${task.procentPrices}"/>
-<p th:text="'procentEmp' +${task.procentEmp}"/>
+<p th:text="'Task Name: ' +${task.name}"/>
+<p th:text="'Description: ' +${task.description}"/>
+<p th:text="'estimation: ' +${task.procentDays}"/>
+<p th:text="'Day: ' +${task.procentDays}"/>
+<p th:text="'Hours ' +${task.procentHours}"/>
+<p th:text="'The cost of your task: ' +${task.procentPrices}"/>
+<p th:text="'Number of employee: ' +${task.procentEmp}"/>
 <a href="/OpretSubTask">Opret sub task</a>
 </body>
 </html>

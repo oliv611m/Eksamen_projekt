@@ -10,7 +10,7 @@
 <form action="#" th:action="@{/OpretSubTask}" th:object="${subTask}" method="post">
     <p>Name : <input type="text" th:field="*{name}"/></p>
     <p>Description : <input type="text" th:field="*{description}"/></p>
-    <p>Estimation : <input type="text" th:action="*{estimation}"/></p>
+    <p>Estimation : <input type="text" th:field="*{estimation}"/></p>
     <p><input type="submit" value="Opret sub task"/></p>
 </form>
 

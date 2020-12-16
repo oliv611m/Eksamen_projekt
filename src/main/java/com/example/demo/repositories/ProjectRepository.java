@@ -1,11 +1,13 @@
 package com.example.demo.repositories;
 
 import com.example.demo.models.Project;
+import com.example.demo.services.ProjectCalculator;
 
 import java.sql.*;
 
 public class ProjectRepository {
     private Connection connection;
+    ProjectCalculator calculator = new ProjectCalculator();
 
     public boolean setConnection(){
         boolean bres = false;
@@ -19,8 +21,9 @@ public class ProjectRepository {
         }
         return bres;
     }
+
     public int createProject(String ProjectName, String description, String startDay, String endDay, int dayPrice,
-                             int totalPrice, int workingDays, int workingHours, int numberOfemp){
+                             int numberOfemp, int totalPrice, int workingDays, int workingHour){
         String insertStatement = "INSERT INTO project(name, day_price, start_date, end_date, decription, days, hours, numbers_ofEmp) VALUES (?,?,?,?,?,?,?,?,?)";
         int project_id = -1;
         try{
@@ -30,10 +33,6 @@ public class ProjectRepository {
             preparedStatement.setString(3,startDay);
             preparedStatement.setString(4,endDay);
             preparedStatement.setInt(5,dayPrice);
-            preparedStatement.setInt(6,totalPrice);
-            preparedStatement.setInt(7,workingDays);
-            preparedStatement.setInt(8,workingHours);
-            preparedStatement.setInt(9,numberOfemp);
 
             preparedStatement.executeUpdate();
 
