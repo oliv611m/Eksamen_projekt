@@ -34,7 +34,7 @@ public class ProfileController {
             return "redirect:login";
         }
         else if(userIden.getCorpID() > 0){
-            return "redirect:login";
+            return "redirect:OpretProjekt";
         }
         return "login";
     }
@@ -60,11 +60,11 @@ public class ProfileController {
                 Cookie cookie = new Cookie("cookieID",userIden.getCookieID());
                 cookie.setMaxAge(2592000);
                 response.addCookie(cookie);
-                return "redirect:OpretProject";
+                return "redirect:OpretProjekt";
             }
         }
         modelMap.addAttribute("errorMessage","Forkert Brugernavn eller Kodeord");
-        return "redirect:login";
+        return "redirect:OpretProjekt";
     }
 
     @GetMapping("/")
