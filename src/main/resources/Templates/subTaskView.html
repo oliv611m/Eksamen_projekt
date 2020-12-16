@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sub task view</title>
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+<body>
+<h1>sub task</h1>
+<p th:text="'Sub Name : ' +${subTask.name}"/>
+<p th:text="'Description : ' +${subTask.description}"/>
+<p th:text="'Estimation : ' +${subTask.estimation}"/>
+<p th:text="'Procent Days : ' +${subTask.procentDays}"/>
+<p th:text="'Procent Hours : ' +${subTask.procentHours}"/>
+<p th:text="'Procent Prices : ' +${subTask.procentPrices}"/>
+<p th:text="'Procent Employee : ' +${subTask.procentEmp}"/>
+
+<a href="/project">Se hele dit project</a>
+<a href="/OpretSubTask">Opret en ny sub task</a>
+</body>
+</html>

@@ -1,8 +1,8 @@
 package com.example.demo.repositories;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import com.example.demo.models.Project;
+import java.sql.*;
+
 
 public class ProfileRepository {
     private Connection connection;
@@ -19,4 +19,5 @@ public class ProfileRepository {
         }
         return bres;
     }
+
 }

@@ -8,14 +8,17 @@
 <body>
 <h1>Dit projekt</h1>
 <p th:text="'Name: '+ ${project.projectName}"/>
+<p th:text="'description: '+${project.description}"/>
 <p th:text="'Number of employee '+${project.numberOfemp}"/>
 <p th:text="'Your total price '+${project.totalPrice}"/>
 <p th:text="'Your start date '+${project.startDay}"/>
 <p th:text="'Your end date '+${project.endDay}"/>
 <p th:text="'number of days during your projekt '+${project.workingDays}"/>
 <p th:text="'number of hours during your projekt '+${project.workingHours}"/>
+
 <a href="/OpretSubProject">Opret et sub project</a>
 <a href="/OpretProjekt">Opret nyt projekt</a>
+
 
 
 

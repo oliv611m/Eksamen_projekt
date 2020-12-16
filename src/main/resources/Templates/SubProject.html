@@ -12,8 +12,10 @@
 <form action="#" th:action="@{/OpretSubProject}" th:object="${subProject}" method="post">
 
     <p>Name : <input type="text" th:field="*{subProjectName}"></p>
+    <p>description : <input type="text" th:field="*{description}"></p>
     <p>Estimation : <input type="text" th:field="*{estimation}"></p>
     <p><input type="submit" value="Opret dit Sub-projekt"/></p>
+
 </form>
 
 </body>
