@@ -6,6 +6,7 @@ import com.example.demo.models.SubTask;
 import com.example.demo.models.Task;
 import com.example.demo.repositories.ProjectRepository;
 import com.example.demo.services.ProjectCalculator;
+import com.example.demo.services.ProjectHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,12 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ProjectHubCreateP {
-    ProjectRepository projectRepository;
+    ProjectHandler projectHandler;
     private Project project;
     private List<SubProject> subProjects = new ArrayList<>();
     private List<Task> tasks = new ArrayList<>();
@@ -32,7 +34,9 @@ public class ProjectHubCreateP {
 
     @PostMapping("/OpretProjekt")
     public String createProject(@ModelAttribute Project project, Model model, WebRequest webRequest){
+        ResultSet resultSet;
         ProjectCalculator calculator = new ProjectCalculator();
+        /*
 
 
         int workingDays = calculator.getWorkingDays(project.getStartDay(),project.getEndDay());
@@ -44,7 +48,22 @@ public class ProjectHubCreateP {
         int totalPrice = calculator.getTotalPrice(workingDays, project.getDayPrice());
         project.setTotalPrice(totalPrice);
 
-        this.project = project;
+
+         */
+        String ProjectName = webRequest.getParameter("ProjectName");
+        String description = webRequest.getParameter("description");
+        String startDay = webRequest.getParameter("startDay");
+        String endDay = webRequest.getParameter("endDay");
+        int numberOfemp = Integer.parseInt(webRequest.getParameter("numberOfemp"));
+        int dayPrice = Integer.parseInt(webRequest.getParameter("dayPrice"));
+
+        int workingDays = calculator.getWorkingDays(startDay,endDay);
+        int workingHours = calculator.getWorkingHours(workingDays);
+        int totalPrice = calculator.getTotalPrice(workingDays,dayPrice);
+
+        int project_id = projectHandler.createProject(ProjectName,description,startDay,endDay,dayPrice,numberOfemp,totalPrice,workingHours,workingDays);
+
+
 
         model.addAttribute("project", project);
         return "ProjectView";
@@ -85,11 +104,13 @@ public class ProjectHubCreateP {
 
     @PostMapping("/OpretTask")
     public String createTask(@ModelAttribute Task task, Model model){
+
         ProjectCalculator calculator = new ProjectCalculator();
 
         double procentDays = calculator.getDoubleFromString(this.subProjects.get(0).getProcentDays());
         String procentDaysToString = calculator.getProcent(task.getEstimation(), procentDays);
         task.setProcentDays(procentDaysToString);
+
 
         double procentHours = calculator.getDoubleFromString(this.subProjects.get(0).getProcentHours());
         String procentHoursToString = calculator.getProcent(task.getEstimation(), procentHours);
@@ -146,7 +167,7 @@ public class ProjectHubCreateP {
         model.addAttribute("project", project);
         model.addAttribute("subProjects", subProjects);
         model.addAttribute("tasks", tasks);
-        model.addAttribute("subTask", subTasks);
+        model.addAttribute("subTasks", subTasks);
         return "FullProjectView";
     }
 

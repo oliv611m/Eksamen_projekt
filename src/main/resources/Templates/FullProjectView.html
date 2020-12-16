@@ -7,50 +7,50 @@
 </head>
 <body>
 
-<div style="box-sizing: border-box; width: 50%; border: 20px orange; float: left">
+<div>
 <h1>Dit projekt</h1>
-<p th:text="'Name: '+ ${project.projectName}"/>
-<p th:text="'description: '+${project.description}"/>
-<p th:text="'Number of employee '+${project.numberOfemp}"/>
-<p th:text="'Your total price '+${project.totalPrice}"/>
-<p th:text="'Your start date '+${project.startDay}"/>
-<p th:text="'Your end date '+${project.endDay}"/>
-<p th:text="'number of days during your projekt '+${project.workingDays}"/>
-<p th:text="'number of hours during your projekt '+${project.workingHours}"/>
+<p th:text="'Project name: '+ ${project.projectName}"/>
+<p th:text="'Description: '+${project.description}"/>
+<p th:text="'Number of employee: '+${project.numberOfemp}"/>
+<p th:text="'Your total price: '+${project.totalPrice}"/>
+<p th:text="'Your start date: '+${project.startDay}"/>
+<p th:text="'Your end date: '+${project.endDay}"/>
+<p th:text="'Number of days during your projekt: '+${project.workingDays}"/>
+<p th:text="'Number of hours during your projekt: '+${project.workingHours}"/>
 </div>
 
 <br />
 <br />
 <div th:each="subProject: ${subProjects}">
-    <p th:text="'Sub project name ' +${subProject.subProjectName}" />
-    <p th:text="'description '+${subProject.description}" />
-    <p th:text="'Your estemation ' +${subProject.estimation}" />
-    <p th:text="'Days in % ' +${subProject.procentDays}" />
-    <p th:text="'Hours in % ' +${subProject.procentHours}" />
-    <p th:text="'Price in % ' +${subProject.procentPrices}" />
-    <p th:text="'Employee % ' +${subProject.procentEmp}" />
+    <p th:text="'Sub project name: ' +${subProject.subProjectName}" />
+    <p th:text="'description: '+${subProject.description}" />
+    <p th:text="'Your estemation: ' +${subProject.estimation}" />
+    <p th:text="'Days: ' +${subProject.procentDays}" />
+    <p th:text="'Hours: ' +${subProject.procentHours}" />
+    <p th:text="'The cost of your sub project: ' +${subProject.procentPrices}" />
+    <p th:text="'Number of employee: ' +${subProject.procentEmp}" />
 </div>
 <br />
 <br />
 <div th:each="task: ${tasks}">
-    <p th:text="'Task Name :' +${task.name}"/>
-    <p th:text="'Description :' +${task.description}"/>
-    <p th:text="'estimation :' +${task.procentDays}"/>
-    <p th:text="'procentDays' +${task.procentDays}"/>
-    <p th:text="'procentHours' +${task.procentHours}"/>
-    <p th:text="'procentPrices' +${task.procentPrices}"/>
-    <p th:text="'procentEmp' +${task.procentEmp}"/>
+    <p th:text="'Task Name: ' +${task.name}"/>
+    <p th:text="'Description: ' +${task.description}"/>
+    <p th:text="'Estimation: ' +${task.procentDays}"/>
+    <p th:text="'Days: ' +${task.procentDays}"/>
+    <p th:text="'Hours: ' +${task.procentHours}"/>
+    <p th:text="'The cost of your task: ' +${task.procentPrices}"/>
+    <p th:text="'The numeber of employee: ' +${task.procentEmp}"/>
 </div>
 <br />
 <br />
 <div th:each="subTask: ${subTasks}">
-    <p th:text="'Sub Name : ' +${subTask.name}"/>
-    <p th:text="'Description : ' +${subTask.description}"/>
-    <p th:text="'Estimation : ' +${subTask.estimation}"/>
-    <p th:text="'Procent Days : ' +${subTask.procentDays}"/>
-    <p th:text="'Procent Hours : ' +${subTask.procentHours}"/>
-    <p th:text="'Procent Prices : ' +${subTask.procentPrices}"/>
-    <p th:text="'Procent Employee : ' +${subTask.procentEmp}"/>
+    <p th:text="'Sub task name: ' +${subTask.name}"/>
+    <p th:text="'Description: ' +${subTask.description}"/>
+    <p th:text="'Estimation: ' +${subTask.estimation}"/>
+    <p th:text="'Days: ' +${subTask.procentDays}"/>
+    <p th:text="'Hours: ' +${subTask.procentHours}"/>
+    <p th:text="'The cost of your sub task: ' +${subTask.procentPrices}"/>
+    <p th:text="'Number of employee: ' +${subTask.procentEmp}"/>
 </div>
 
 </body>
