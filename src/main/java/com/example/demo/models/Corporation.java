@@ -1,26 +1,16 @@
 package com.example.demo.models;
 
 public class Corporation {
-    private int corp_id;
     private String name;
     private int cvr_no;
     private String email;
     private String password;
 
-    public Corporation(int corp_id, String name, int cvr_no, String email, String password) {
-        this.corp_id = corp_id;
+    public Corporation(String name, int cvr_no, String email, String password) {
         this.name = name;
         this.cvr_no = cvr_no;
         this.email = email;
         this.password = password;
-    }
-
-    public int getCorp_id() {
-        return corp_id;
-    }
-
-    public void setCorp_id(int corp_id) {
-        this.corp_id = corp_id;
     }
 
     public String getName() {
