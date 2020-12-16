@@ -1,33 +1,19 @@
 package com.example.demo.models;
 
 public class Project {
+    private int project_id;
     private String startDay;
     private String endDay;
     private int dayPrice;
     private int totalPrice;
     private int workingDays;
     private int workingHours;
-    private String subProject;
     private String projectName;
     private int numberOfemp;
+    private String description;
 
-    public Project() {
 
-    }
-
-    public Project(String startDay, String endDay, int dayPrice, int totalPrice, int workingDays, int workingHours,
-                   String subProject, String projectName, int numberOfemp) {
-        this.startDay = startDay;
-        this.endDay = endDay;
-        this.dayPrice = dayPrice;
-        this.totalPrice = totalPrice;
-        this.workingDays = workingDays;
-        this.workingHours = workingHours;
-        this.subProject = subProject;
-        this.projectName = projectName;
-        this.numberOfemp = numberOfemp;
-    }
-
+    public Project() {}
 
     public int getNumberOfemp() { return numberOfemp; }
     public void setNumberOfemp(int numberOfemp) { this.numberOfemp = numberOfemp; }
@@ -35,8 +21,6 @@ public class Project {
     public String getProjectName() { return projectName; }
     public void setProjectName(String projectName) { this.projectName = projectName; }
 
-    public String getSubProject() { return subProject; }
-    public void setSubProject(String subProject) { this.subProject = subProject; }
 
     public int getWorkingHours() { return workingHours; }
     public void setWorkingHours(int workingHours) { this.workingHours = workingHours; }
@@ -67,4 +51,7 @@ public class Project {
     public void setEndDay(String endDay) {
         this.endDay = endDay;
     }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 }

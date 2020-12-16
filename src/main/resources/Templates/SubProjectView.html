@@ -6,15 +6,15 @@
     <link href="stylesheet.css" rel="stylesheet">
 </head>
 <body>
-<h1>Sub p view</h1>
-
-<p th:text="'Sub project name ' +${subProject.subProjectName}">
-<p th:text="'Your estemation ' +${subProject.estimation}">
-<p th:text="'Days in % ' +${subProject.procentDays}">
-<p th:text="'Hours in % ' +${subProject.procentHours}">
-<p th:text="'Price in % ' +${subProject.procentPrices}">
-<p th:text="'Employee % ' +${subProject.procentEmp}">
-
-    <a href="/SubProjekt">Opret nyt sub projekt</a>
+<h1>Sub p view 123</h1>
+<p th:text="'Sub project name ' +${subProject.subProjectName}" />
+<p th:text="'description '+${subProject.description}" />
+<p th:text="'Your estemation ' +${subProject.estimation}" />
+<p th:text="'Days in % ' +${subProject.procentDays}" />
+<p th:text="'Hours in % ' +${subProject.procentHours}" />
+<p th:text="'Price in % ' +${subProject.procentPrices}" />
+<p th:text="'Employee % ' +${subProject.procentEmp}" />
+<a href="/OpretSubProject">Opret et sub project</a>
+<a href="/OpretTask">Opret en ny task</a>
 </body>
 </html>

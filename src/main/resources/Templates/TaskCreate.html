@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Task</title>
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+<body>
+<form action="#" th:action="@{/OpretTask}" th:object="${task}" method="post">
+    <p>Name : <input type="text" th:field="*{name}"></p>
+    <p>Description : <input type="text" th:field="*{description}"></p>
+    <p>Estimation : <input type="text" th:field="*{estimation}"></p>
+    <p><input type="submit" value="Opret en task"></p>
+</form>
+</body>
+</html>

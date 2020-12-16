@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task View</title>
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+<body>
+<h1>Task</h1>
+<p th:text="'Task Name :' +${task.name}"/>
+<p th:text="'Description :' +${task.description}"/>
+<p th:text="'estimation :' +${task.procentDays}"/>
+<p th:text="'procentDays' +${task.procentDays}"/>
+<p th:text="'procentHours' +${task.procentHours}"/>
+<p th:text="'procentPrices' +${task.procentPrices}"/>
+<p th:text="'procentEmp' +${task.procentEmp}"/>
+<a href="/OpretSubTask">Opret sub task</a>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>create sub task</title>
+    <link href="stylesheet.css" rel="stylesheet">
+</head>
+<body>
+<h1>Opret sub task</h1>
+<form action="#" th:action="@{/OpretSubTask}" th:object="${subTask}" method="post">
+    <p>Name : <input type="text" th:field="*{name}"/></p>
+    <p>Description : <input type="text" th:field="*{description}"/></p>
+    <p>Estimation : <input type="text" th:action="*{estimation}"/></p>
+    <p><input type="submit" value="Opret sub task"/></p>
+</form>
+
+</body>
+</html>
