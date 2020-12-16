@@ -1,8 +1,10 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.UserIdentification;
+import com.example.demo.services.CheckUserInput;
 import com.example.demo.services.CheckUserService;
 import com.example.demo.services.LoginService;
+import com.example.demo.services.RegistrationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -18,10 +20,12 @@ public class ProfileController {
 
     CheckUserService checkUserService;
     LoginService loginService;
+    RegistrationService registrationService;
 
     public ProfileController(){
         checkUserService = new CheckUserService();
         loginService = new LoginService();
+        registrationService = new RegistrationService();
     }
 
     @GetMapping("/login")
@@ -31,7 +35,7 @@ public class ProfileController {
             return "login";
         }
         else if(userIden.isEmpID()){
-            return "redirect:login";
+            return "redirect:OpretProjekt";
         }
         else if(userIden.getCorpID() > 0){
             return "redirect:OpretProjekt";
@@ -51,7 +55,7 @@ public class ProfileController {
             Cookie cookie = new Cookie("cookieID",userIden.getCookieID());
             cookie.setMaxAge(2592000);
             response.addCookie(cookie);
-            return "redirect:login";
+            return "redirect:OpretProjekt";
         }
         else{
             int corpID = loginService.getCorpID(mail,password);
@@ -64,12 +68,55 @@ public class ProfileController {
             }
         }
         modelMap.addAttribute("errorMessage","Forkert Brugernavn eller Kodeord");
-        return "redirect:OpretProjekt";
+        return "redirect:login";
     }
 
     @GetMapping("/")
     public String index(@CookieValue(value = "cookieID", defaultValue = "") String cookieID, HttpServletResponse response, ModelMap modelMap){
         return "redirect:login";
+    }
+
+    //UserIdentifying
+    @GetMapping("/register")
+    public String register(@CookieValue(value = "cookieID", defaultValue = "") String cookieID, HttpServletResponse response, ModelMap modelMap){
+        UserIdentification userIden = checkUserService.checkUser(cookieID);
+        if(userIden == null){
+            return  "register";
+        }
+        else if(userIden.isEmpID()){
+            return "redirect:userList";
+        }
+        else if(userIden.getCorpID() > 0){
+            return "redirect:match";
+        }
+        return "register";
+    }
+
+    //UserIdentifying
+    @PostMapping("/registrationRequest")
+    public String registrationRequest(@CookieValue(value = "cookieID", defaultValue = "") String cookieID, HttpServletResponse response, ModelMap modelMap, WebRequest webRequest){
+        String mail = webRequest.getParameter("mail");
+        String name = webRequest.getParameter("name");
+        String password = webRequest.getParameter("password");
+        int CVR_no = Integer.parseInt(webRequest.getParameter("CVR_no"));
+        UserIdentification userIden = checkUserService.checkUser(cookieID);
+        if(userIden == null || registrationService.checkRegistration(mail, name, password)){
+            int corpID = registrationService.createProfile(mail, name, password, CVR_no);
+            if(corpID > 0){
+                userIden = checkUserService.createUserIdentification(corpID, false);
+                Cookie cookie = new Cookie("cookieID", userIden.getCookieID());
+                cookie.setMaxAge(2592000);
+                response.addCookie(cookie);
+                return "redirect:OpretProjekt";
+            }
+            else{
+                return "redirect:login";
+            }
+        }
+        else if(userIden.isEmpID()){
+            return "redirect:userList";
+        }
+        return "redirect:OpretProjekt";
     }
 
 }

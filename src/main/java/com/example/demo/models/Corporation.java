@@ -5,12 +5,14 @@ public class Corporation {
     private int cvr_no;
     private String email;
     private String password;
+    private int corpID;
 
-    public Corporation(String name, int cvr_no, String email, String password) {
+    public Corporation(String name, int cvr_no, String email, String password, int corpID) {
         this.name = name;
         this.cvr_no = cvr_no;
         this.email = email;
         this.password = password;
+        this.corpID = corpID;
     }
 
     public String getName() {
@@ -43,5 +45,11 @@ public class Corporation {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getCorpID(){return corpID;}
+
+    public void setCorpID(int corpID) {
+        this.corpID = corpID;
     }
 }

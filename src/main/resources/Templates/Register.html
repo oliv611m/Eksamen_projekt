@@ -1,26 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
     <meta charset="UTF-8">
-    <title>Login</title>
+    <title>Registrering</title>
     <link href="stylesheet.css" rel="stylesheet">
     <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" rel="stylesheet">
 </head>
 <body>
 <div class="row">
-    <div class="col-lg-3"></div>
+    <div class="col-lg-3">
+        <a href="/login"><p>Tilbage til login</p></a>
+    </div>
     <div class="col-lg-4">
-        <br><br><br><br><br><br><br><br>
         <div style="alignment: center">
-            <form method="post" action="/loginRequest" style="border: solid;border-width: 5px; padding: 10px">
+            <form method="post" action="/registrationRequest">
+                <label for="name">Navn</label><br>
+                <input type="text" id="name" name="name"><br>
+                <label for="CVR_no">CVR nummer</label><br>
+                <input type="text" id="CVR_no" name="CVR_no"><br>
                 <label for="mail">E-mail</label><br>
                 <input type="text" id="mail" name="mail"><br>
                 <label for="password">Kodeord</label><br>
-                <input type="password" id="password" name="password"><br><br>
-                <input type="submit" value="Login">
-            </form><br>
-            <a href="/register"><p>Registrer ny bruger</p></a>
+                <input type="text" id="password" name="password"><br>
+                <input type="submit" value="Opret profil">
+            </form>
         </div>
     </div>
     <div class="col-lg-3"></div>

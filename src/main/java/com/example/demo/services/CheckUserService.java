@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.models.UserIdentification;
+import com.example.demo.repositories.ProfileRepository;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -58,4 +59,5 @@ public class CheckUserService {
         }
         return res;
     }
+
 }
