@@ -73,4 +73,17 @@ public class ProfileRepository {
         return corporation;
     }
 
+    public ProfileRepository deleteProfile(int corpID){
+        String deleteStatement = "DELETE FROM corporation WHERE corp_id = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteStatement);
+            preparedStatement.setInt(1,corpID);
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e){
+            System.out.println("Failed to delete profile="+e.getMessage());
+        }
+        return null;
+    }
+
 }

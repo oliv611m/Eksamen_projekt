@@ -119,4 +119,16 @@ public class ProfileController {
         return "redirect:OpretProjekt";
     }
 
+    //Profile
+    @PostMapping("/deleteProfile")
+    public String deleteProfile(@CookieValue(value = "cookieID", defaultValue = "") String cookieID, HttpServletResponse response, ModelMap modelMap, WebRequest request){
+        UserIdentification userIden = checkUserService.checkUser(cookieID);
+        if(userIden == null){
+            return "redirect:login";
+        }
+        registrationService.deleteProfile(userIden.getCorpID(), modelMap);
+        checkUserService.removeUserIdentification(userIden.getCookieID());
+        return "redirect:login";
+    }
+
 }
