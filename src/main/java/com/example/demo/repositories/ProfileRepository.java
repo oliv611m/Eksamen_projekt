@@ -49,7 +49,7 @@ public class ProfileRepository {
         String name = null;
         String password = null;
         int CVR_no = -1;
-        String email = null;
+        String mail = null;
         int corporationID = -1;
 
         try{
@@ -61,7 +61,7 @@ public class ProfileRepository {
             name = res.getString("name");
             password = res.getString("password");
             CVR_no = res.getInt("CVR_no");
-            email = res.getString("email");
+            mail = res.getString("mail");
             corpID = res.getInt("corp_id");
 
         }
@@ -69,7 +69,7 @@ public class ProfileRepository {
             System.out.println("GetUserInfoError="+e.getMessage());
         }
 
-        Corporation corporation = new Corporation(name, CVR_no, email, password, corporationID);
+        Corporation corporation = new Corporation(name, CVR_no, mail, password, corporationID);
         return corporation;
     }
 

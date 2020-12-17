@@ -44,6 +44,13 @@ public class ProfileController {
     }
 
     //UserIdentifying
+    @GetMapping("/logout")
+    public String logOut(@CookieValue(value = "cookieID", defaultValue = "") String cookieID, HttpServletResponse response, ModelMap modelMap){
+        checkUserService.removeUserIdentification(cookieID);
+        return "redirect:login";
+    }
+
+    //UserIdentifying
     @PostMapping("/loginRequest")
     public String loginRequest(@CookieValue(value = "cookieID", defaultValue = "") String cookieID, HttpServletResponse response, ModelMap modelMap, WebRequest webRequest){
         String mail = webRequest.getParameter("mail");
@@ -64,7 +71,7 @@ public class ProfileController {
                 Cookie cookie = new Cookie("cookieID",userIden.getCookieID());
                 cookie.setMaxAge(2592000);
                 response.addCookie(cookie);
-                return "redirect:OpretProjekt";
+                return "redirect:profile";
             }
         }
         modelMap.addAttribute("errorMessage","Forkert Brugernavn eller Kodeord");
@@ -117,6 +124,26 @@ public class ProfileController {
             return "redirect:userList";
         }
         return "redirect:OpretProjekt";
+    }
+
+    //Profile
+    @GetMapping("/profile")
+    public String profile(@CookieValue(value = "cookieID", defaultValue = "") String cookieID, HttpServletResponse response, ModelMap modelMap, WebRequest request){
+        UserIdentification userIden = checkUserService.checkUser(cookieID);
+        if(userIden == null){
+            return "redirect:login";
+        }
+        else if(userIden.isEmpID()){
+            int corpID = Integer.parseInt(request.getParameter("profileID"));
+            registrationService.getCorporation(corpID, modelMap);
+            return "profile";
+        }
+        else if(userIden.getCorpID() < 0){
+            return "redirect:login";
+        }
+        registrationService.getCorporation(userIden.getCorpID(), modelMap);
+        modelMap.addAttribute("userIden", userIden);
+        return "profile";
     }
 
     //Profile
