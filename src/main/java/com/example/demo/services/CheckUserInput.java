@@ -35,7 +35,7 @@ public class CheckUserInput {
         return year + "-" + month + "-" + day;
     }
 
-    public boolean checkChangesToProfile(String firstname, String surname, String email, String username, String password, String description){
+    public boolean checkChangesToProject(String firstname, String surname, String email, String username, String password, String description){
         boolean b = true;
         if(firstname == null || firstname.length() > 150){
             b = false;
