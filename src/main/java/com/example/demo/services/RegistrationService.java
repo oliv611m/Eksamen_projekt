@@ -41,4 +41,15 @@ public class RegistrationService {
         }
         return b;
     }
+
+    public void deleteProfile(int corpID, ModelMap modelMap){
+        ProfileRepository deleteProfile = jdbc.deleteProfile(corpID);
+
+        if (deleteProfile == null){
+            modelMap.addAttribute("errorMessage", "Kunne ikke slette din profil");
+        }
+        else{
+            modelMap.addAttribute("deleteProfile", deleteProfile);
+        }
+    }
 }

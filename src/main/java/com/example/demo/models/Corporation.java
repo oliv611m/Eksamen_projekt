@@ -3,14 +3,14 @@ package com.example.demo.models;
 public class Corporation {
     private String name;
     private int cvr_no;
-    private String email;
+    private String mail;
     private String password;
     private int corpID;
 
-    public Corporation(String name, int cvr_no, String email, String password, int corpID) {
+    public Corporation(String name, int cvr_no, String mail, String password, int corpID) {
         this.name = name;
         this.cvr_no = cvr_no;
-        this.email = email;
+        this.mail = mail;
         this.password = password;
         this.corpID = corpID;
     }
@@ -31,12 +31,12 @@ public class Corporation {
         this.cvr_no = cvr_no;
     }
 
-    public String getEmail() {
-        return email;
+    public String getMail() {
+        return mail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setMail(String mail) {
+        this.mail = mail;
     }
 
     public String getPassword() {
