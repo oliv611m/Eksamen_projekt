@@ -25,6 +25,10 @@ import java.util.List;
         private List<Task> tasks = new ArrayList<>();
         private List<SubTask> subTasks = new ArrayList<>();
 
+        public ProjectController(){
+            projectHandler = new ProjectHandler();
+        }
+
         @GetMapping("/OpretProjekt")
         public String showProjectCreationPage(Model model){
             model.addAttribute("project", new Project());

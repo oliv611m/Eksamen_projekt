@@ -91,10 +91,10 @@ public class ProfileController {
             return  "register";
         }
         else if(userIden.isEmpID()){
-            return "redirect:userList";
+            return "redirect:profile";
         }
         else if(userIden.getCorpID() > 0){
-            return "redirect:match";
+            return "redirect:profile";
         }
         return "register";
     }
@@ -121,7 +121,7 @@ public class ProfileController {
             }
         }
         else if(userIden.isEmpID()){
-            return "redirect:userList";
+            return "redirect:profile";
         }
         return "redirect:OpretProjekt";
     }
