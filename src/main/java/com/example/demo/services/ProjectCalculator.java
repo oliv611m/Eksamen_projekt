@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.models.Project;
 import com.example.demo.repositories.ProfileRepository;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
@@ -14,7 +15,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 
-
+@Service
 public class ProjectCalculator {
 
     public String getProcent(double procent, double number) {
