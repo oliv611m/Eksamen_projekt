@@ -24,59 +24,65 @@ public class ProjectRepository {
 
     public int createProject(String ProjectName, String description, String startDay, String endDay, int dayPrice,
                              int numberOfemp, int totalPrice, int workingDays, int workingHour){
-        String insertStatement = "INSERT INTO project(name, day_price, start_date, end_date, decription, days, hours, numbers_ofEmp) VALUES (?,?,?,?,?,?,?,?,?)";
+        String insertStatement = "INSERT INTO project(name, day_price, total_Price, start_date, end_date, decription, days, hours, numbers_Ofemp) VALUES (?,?,?,?,?,?,?,?,?)";
         int project_id = -1;
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(insertStatement);
             preparedStatement.setString(1,ProjectName);
-            preparedStatement.setString(2,description);
-            preparedStatement.setString(3,startDay);
-            preparedStatement.setString(4,endDay);
-            preparedStatement.setInt(5,dayPrice);
+            preparedStatement.setInt(2,dayPrice);
+            preparedStatement.setString(3, String.valueOf(totalPrice));
+            preparedStatement.setString(4,startDay);
+            preparedStatement.setString(5,endDay);
+            preparedStatement.setString(6,description);
+            preparedStatement.setInt(7,workingDays);
+            preparedStatement.setString(8, String.valueOf(workingHour));
+            preparedStatement.setString(9, String.valueOf(numberOfemp));
+
 
             preparedStatement.executeUpdate();
 
         }catch (SQLException e){
-            System.out.println("Profile creation failed="+e.getMessage());
+            System.out.println("Project creation failed="+e.getMessage());
         }
         return project_id;
     }
 
-    public int createSubProject(int project_id){
-        String insertStatement = "INSERT INTO sub_project(name, days, hours, employees, prices, project_id, decription) VALUES (?,?,?,?,?,?,?,?)";
+    public int createSubProject(String subProjectName, String procentDays, String procentHours, String procentPrices, String procentEmp, String description){
+        String insertStatement = "INSERT INTO sub_project(name, days, hours, employees, price, description) VALUES (?,?,?,?,?,?)";
         int sub_project_id = -1;
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(insertStatement);
-            preparedStatement.setString(1,"");
-            preparedStatement.setInt(2,0);
-            preparedStatement.setInt(3,0);
-            preparedStatement.setInt(4,0);
-            preparedStatement.setInt(5,0);
-            preparedStatement.setInt(6,project_id);
-            preparedStatement.setString(7,"");
+            preparedStatement.setString(1,subProjectName);
+            preparedStatement.setString(2,procentDays);
+            preparedStatement.setString(3,procentHours);
+            preparedStatement.setString(4,procentEmp);
+            preparedStatement.setString(5,procentPrices);
+            preparedStatement.setString(6,description);
+
+
             preparedStatement.executeUpdate();
 
         }catch (SQLException e){
-            System.out.println("Profile creation failed="+e.getMessage());
+            System.out.println("SubProject creation failed="+e.getMessage());
         }
         return sub_project_id;
     }
 
-    public int createTask(int sub_project_id) {
+    public int createTask() {
         String insertStatement = "INSERT INTO task(name, days, sub_project_id, hours, price, description) VALUES (?,?,?,?,?,?)";
         int task_id = -1;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(insertStatement);
             preparedStatement.setString(1, "");
             preparedStatement.setInt(2, 0);
-            preparedStatement.setInt(3, sub_project_id);
+            preparedStatement.setInt(3,0);
             preparedStatement.setInt(4, 0);
             preparedStatement.setInt(5, 0);
             preparedStatement.setString(6, "");
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("Profile creation failed=" + e.getMessage());
+            System.out.println("Task creation failed=" + e.getMessage());
         }
         return task_id;
     }
@@ -94,9 +100,22 @@ public class ProjectRepository {
             preparedStatement.setInt(6,0);
             preparedStatement.setString(7,"");
         }catch (SQLException e) {
-            System.out.println("Profile creation failed=" + e.getMessage());
+            System.out.println("SubTask creation failed=" + e.getMessage());
         }
         return sub_task_id;
+    }
+
+    public ProjectRepository deleteProject(int projectID){
+        String deleteStatement = "DELETE FROM project WHERE project_id = ?";
+        try{
+            PreparedStatement preparedStatement = connection.prepareStatement(deleteStatement);
+            preparedStatement.setInt(1,projectID);
+            preparedStatement.executeUpdate();
+        }
+        catch (SQLException e){
+            System.out.println("Failed to delete project="+e.getMessage());
+        }
+        return null;
     }
 
 }

@@ -1,24 +1,25 @@
 package com.example.demo.controllers;
 
-import com.example.demo.models.Project;
-import com.example.demo.models.SubProject;
-import com.example.demo.models.SubTask;
-import com.example.demo.models.Task;
+import com.example.demo.models.*;
 import com.example.demo.services.ProjectCalculator;
 import com.example.demo.services.ProjectHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletResponse;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
     @Controller
     public class ProjectController {
+        ProjectCalculator projectCalculator;
         ProjectHandler projectHandler;
         private Project project;
         private List<SubProject> subProjects = new ArrayList<>();
@@ -26,6 +27,7 @@ import java.util.List;
         private List<SubTask> subTasks = new ArrayList<>();
 
         public ProjectController(){
+            projectCalculator = new ProjectCalculator();
             projectHandler = new ProjectHandler();
         }
 
@@ -57,12 +59,20 @@ import java.util.List;
             String description = webRequest.getParameter("description");
             String startDay = webRequest.getParameter("startDay");
             String endDay = webRequest.getParameter("endDay");
+            /*
+            String year = webRequest.getParameter("year");
+            String month = webRequest.getParameter("month");
+            String day = webRequest.getParameter("day");
+            String startDay = checkUserInput.checkDate(year,month,day);
+            String endDay = checkUserInput.checkDate(year,month,day);
+
+             */
             int numberOfemp = Integer.parseInt(webRequest.getParameter("numberOfemp"));
             int dayPrice = Integer.parseInt(webRequest.getParameter("dayPrice"));
 
-            int workingDays = calculator.getWorkingDays(startDay,endDay);
-            int workingHours = calculator.getWorkingHours(workingDays);
-            int totalPrice = calculator.getTotalPrice(workingDays,dayPrice);
+            int workingDays = projectCalculator.getWorkingDays(startDay,endDay);
+            int workingHours = projectCalculator.getWorkingHours(workingDays);
+            int totalPrice = projectCalculator.getTotalPrice(workingDays,dayPrice);
 
             int project_id = projectHandler.createProject(ProjectName,description,startDay,endDay,dayPrice,numberOfemp,totalPrice,workingHours,workingDays);
 
@@ -79,7 +89,7 @@ import java.util.List;
         }
 
         @PostMapping("/OpretSubProject")
-        public String createSubProject(@ModelAttribute SubProject subProject, Model model){
+        public String createSubProject(@ModelAttribute SubProject subProject, Model model, WebRequest webRequest){
             ProjectCalculator calculator = new ProjectCalculator();
 
             String procentDays = calculator.getProcent(subProject.getEstimation(), this.project.getWorkingDays());
@@ -88,11 +98,16 @@ import java.util.List;
             String procentHours = calculator.getProcent(subProject.getEstimation(), this.project.getWorkingHours());
             subProject.setProcentHours(procentHours);
 
-            String procentPric = calculator.getProcent(subProject.getEstimation(), this.project.getTotalPrice());
-            subProject.setProcentPrices(procentPric);
+            String procentPrices = calculator.getProcent(subProject.getEstimation(), this.project.getTotalPrice());
+            subProject.setProcentPrices(procentPrices);
 
             String procentEmp = calculator.getProcent(subProject.getEstimation(), this.project.getNumberOfemp());
             subProject.setProcentEmp(procentEmp);
+
+            String subProjectName = webRequest.getParameter("subProjectName");
+            String description = webRequest.getParameter("description");
+
+            int sub_project_id = projectHandler.createSubProject(subProjectName, procentDays, procentHours, procentPrices, procentEmp, description);
 
             this.subProjects.add(subProject);
             model.addAttribute("subProject", subProject);
