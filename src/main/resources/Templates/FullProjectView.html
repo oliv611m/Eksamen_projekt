@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>View</title>
-    <link th:href="@{/static/css/stylesheet.css}" rel="stylesheet"/>
+    <title>Project</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
-
-<div>
-<h1>Dit projekt</h1>
+<body style="background-color: lightblue">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">ProjektKalkulationsVærktøj</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="brand"><a href="/OpretProjekt">Opret nyt Projekt</a>
+            </li>
+            <li class="brand"><a href="/profile">Profil</a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log ud</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="row" align="center">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-2">
+<h1>Projekt</h1>
+        <div th:each="project: ${project}">
+    <div style="border: solid;border-width: 5px; padding: 10px">
 <p th:text="'Project name: '+ ${project.projectName}"/>
 <p th:text="'Description: '+${project.description}"/>
 <p th:text="'Number of employee: '+${project.numberOfemp}"/>
@@ -17,11 +38,14 @@
 <p th:text="'Your end date: '+${project.endDay}"/>
 <p th:text="'Number of days during your projekt: '+${project.workingDays}"/>
 <p th:text="'Number of hours during your projekt: '+${project.workingHours}"/>
+        </div>
+        </div>
 </div>
 
-<br />
-<br />
-<div th:each="subProject: ${subProjects}">
+    <div class="col-lg-2">
+        <h1>Subprojekt</h1>
+        <div th:each="subProject: ${subProjects}">
+        <div style="border: solid;border-width: 5px; padding: 10px">
     <p th:text="'Sub project name: ' +${subProject.subProjectName}" />
     <p th:text="'description: '+${subProject.description}" />
     <p th:text="'Your estemation: ' +${subProject.estimation}" />
@@ -30,9 +54,13 @@
     <p th:text="'The cost of your sub project: ' +${subProject.procentPrices}" />
     <p th:text="'Number of employee: ' +${subProject.procentEmp}" />
 </div>
-<br />
-<br />
-<div th:each="task: ${tasks}">
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <h1>Task</h1>
+        <div th:each="task: ${tasks}">
+        <div style="border: solid;border-width: 5px; padding: 10px">
     <p th:text="'Task Name: ' +${task.name}"/>
     <p th:text="'Description: ' +${task.description}"/>
     <p th:text="'Estimation: ' +${task.procentDays}"/>
@@ -41,9 +69,13 @@
     <p th:text="'The cost of your task: ' +${task.procentPrices}"/>
     <p th:text="'The numeber of employee: ' +${task.procentEmp}"/>
 </div>
-<br />
-<br />
+        </div>
+    </div>
+
+    <div class="col-lg-2">
+        <h1>Subtask</h1>
 <div th:each="subTask: ${subTasks}">
+    <div style="border: solid;border-width: 5px; padding: 10px">
     <p th:text="'Sub task name: ' +${subTask.name}"/>
     <p th:text="'Description: ' +${subTask.description}"/>
     <p th:text="'Estimation: ' +${subTask.estimation}"/>
@@ -51,7 +83,10 @@
     <p th:text="'Hours: ' +${subTask.procentHours}"/>
     <p th:text="'The cost of your sub task: ' +${subTask.procentPrices}"/>
     <p th:text="'Number of employee: ' +${subTask.procentEmp}"/>
+    </div>
 </div>
-
+    </div>
+    <div class="col-lg-3"></div>
+</div>
 </body>
 </html>

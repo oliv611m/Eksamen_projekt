@@ -1,12 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>View</title>
-    <link href="stylesheet.css" rel="stylesheet">
+    <title>Projectview</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: lightblue">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">ProjektKalkulationsVærktøj</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="brand"><a href="/OpretProjekt">Opret nyt Projekt</a>
+            </li>
+            <li class="brand"><a href="/profile">Profil</a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log ud</a></li>
+        </ul>
+    </div>
+</nav>
 <h1>Dit projekt</h1>
+
 <p th:text="'Name: ' +${project.projectName}"/>
 <p th:text="'description: ' +${project.description}"/>
 <p th:text="'Number of employee: ' +${project.numberOfemp}"/>
@@ -16,12 +35,10 @@
 <p th:text="'number of days during your projekt: ' +${project.workingDays}"/>
 <p th:text="'number of hours during your projekt: ' +${project.workingHours}"/>
 
-<a href="/OpretSubProject">Opret et sub project</a>
 <br>
 <br>
-<form method="post" action="/deleteProject">
-    <input type="submit" value="Slet Projekt"/>
-    <input type="hidden" name="projectID" th:value="${project.getProjectID()}">
+<form method="post" action="/OpretSubProject">
+    <input type="submit" value="Opret subprojekt"/>
 </form>
 
 

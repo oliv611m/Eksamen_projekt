@@ -1,32 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
-    <meta charset="UTF-8">
     <title>Profile</title>
-    <link href="stylesheet.css" rel="stylesheet">
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div class="row">
-    <div class="col-lg-1"></div>
-    <div class="col-lg-3">
-        <a href="/OpretProjekt" th:unless="${userIden.isEmpID()}"><p>Opret projekt</p></a>
-        <a href="/Project"><p>Se nuværende projekt</p></a>
+<body style="background-color: lightblue">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">ProjektKalkulationsVærktøj</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="brand"><a href="/OpretProjekt">Opret Projekt</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log ud</a></li>
+        </ul>
     </div>
-    <div class="col-lg-2">
+</nav>
+<div class="row">
+    <div class="col-lg-5"></div>
+    <div class="col-lg-3">
         <div style="alignment: center">
-            <form method="get" action="/profile">
-                <label for="name">Navn</label>
-                <input th:value="${corporation.getName()}" type="text" id="name" name="name">
-                <label for="CVR_no">CVR nummer</label>
-                <input th:value="${corporation.getCvr_no()}" type="text" id="CVR_no" name="CVR_no"><br>
-                <label for="mail">E-mail</label>
-                <input th:value="${corporation.getMail()}" type="text" id="mail" name="mail">
+            <form method="get" action="/profile" style="border: solid;border-width: 5px; padding: 20px">
+                <label for="name">Navn</label><br>
+                <input th:value="${corporation.getName()}" type="text" id="name" name="name"><br><br>
+                <label for="CVR_no">CVR nummer</label><br>
+                <input th:value="${corporation.getCvr_no()}" type="text" id="CVR_no" name="CVR_no"><br><br>
+                <label for="mail">E-mail</label><br>
+                <input th:value="${corporation.getMail()}" type="text" id="mail" name="mail"><br><br>
                 <label for="password">Kodeord</label><br>
-                <input th:value="${corporation.getPassword()}" type="password" id="password" name="password"><br>
-                <br>
-                <input type="submit" value="Rediger Profil"/>
+                <input th:value="${corporation.getPassword()}" type="password" id="password" name="password"><br><br>
             </form>
             <br>
             <br>
@@ -35,10 +44,6 @@
                 <input type="hidden" name="corpID" th:value="${corporation.getCorpID()}">
             </form>
         </div>
-    </div>
-    <div class="col-lg-1">
-        <a href="/logout"><p>logout</p></a>
-        <br><br><br><br><br><br><br><br><br>
     </div>
     <div class="col-lg-3"></div>
 

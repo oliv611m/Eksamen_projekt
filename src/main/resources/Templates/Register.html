@@ -1,28 +1,38 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="da">
 <head>
-    <meta charset="UTF-8">
-    <title>Registrering</title>
-    <link href="stylesheet.css" rel="stylesheet">
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" rel="stylesheet">
+    <title>Register</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
-<div class="row">
-    <div class="col-lg-3">
-        <a href="/login"><p>Tilbage til login</p></a>
+<body style="background-color: lightblue">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">ProjektKalkulationsVærktøj</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/login"><span class="glyphicon glyphicon-log-out"></span>Login</a></li>
+        </ul>
     </div>
-    <div class="col-lg-4">
+</nav>
+<div class="row">
+    <div class="col-lg-5">
+    </div>
+    <div class="col-lg-3">
         <div style="alignment: center">
-            <form method="post" action="/registrationRequest">
+            <form method="post" action="/registrationRequest" style="border: solid;border-width: 5px; padding: 10px">
                 <label for="name">Navn</label><br>
-                <input type="text" id="name" name="name"><br>
+                <input type="text" id="name" name="name"><br><br>
                 <label for="CVR_no">CVR nummer</label><br>
-                <input type="text" id="CVR_no" name="CVR_no"><br>
+                <input type="text" id="CVR_no" name="CVR_no"><br><br>
                 <label for="mail">E-mail</label><br>
-                <input type="text" id="mail" name="mail"><br>
+                <input type="text" id="mail" name="mail"><br><br>
                 <label for="password">Kodeord</label><br>
-                <input type="text" id="password" name="password"><br>
+                <input type="text" id="password" name="password"><br><br>
                 <input type="submit" value="Opret profil">
             </form>
         </div>
