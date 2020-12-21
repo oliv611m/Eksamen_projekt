@@ -1,7 +1,6 @@
 package com.example.demo.controllers;
 
 import com.example.demo.models.UserIdentification;
-import com.example.demo.services.CheckUserInput;
 import com.example.demo.services.CheckUserService;
 import com.example.demo.services.LoginService;
 import com.example.demo.services.RegistrationService;
