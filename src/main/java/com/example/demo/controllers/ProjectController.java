@@ -55,7 +55,7 @@ import java.util.List;
 
 
          */
-            String ProjectName = webRequest.getParameter("ProjectName");
+            String projectName = webRequest.getParameter("projectName");
             String description = webRequest.getParameter("description");
             String startDay = webRequest.getParameter("startDay");
             String endDay = webRequest.getParameter("endDay");
@@ -74,7 +74,7 @@ import java.util.List;
             int workingHours = projectCalculator.getWorkingHours(workingDays);
             int totalPrice = projectCalculator.getTotalPrice(workingDays,dayPrice);
 
-            int project_id = projectHandler.createProject(ProjectName,description,startDay,endDay,dayPrice,numberOfemp,totalPrice,workingHours,workingDays);
+            int project_id = projectHandler.createProject(projectName,description,startDay,endDay,dayPrice,numberOfemp,totalPrice,workingHours,workingDays);
 
 
             this.project = project;
@@ -121,7 +121,7 @@ import java.util.List;
         }
 
         @PostMapping("/OpretTask")
-        public String createTask(@ModelAttribute Task task, Model model){
+        public String createTask(@ModelAttribute Task task, Model model, WebRequest webRequest){
 
             ProjectCalculator calculator = new ProjectCalculator();
 
@@ -134,14 +134,18 @@ import java.util.List;
             String procentHoursToString = calculator.getProcent(task.getEstimation(), procentHours);
             task.setProcentHours(procentHoursToString);
 
-            double procentPrice = calculator.getDoubleFromString(this.subProjects.get(0).getProcentPrices());
-            String procentPriceToString = calculator.getProcent(task.getEstimation(), procentPrice);
+            double procentPrices = calculator.getDoubleFromString(this.subProjects.get(0).getProcentPrices());
+            String procentPriceToString = calculator.getProcent(task.getEstimation(), procentPrices);
             task.setProcentPrices(procentPriceToString);
 
             double procentEmp = calculator.getDoubleFromString(this.subProjects.get(0).getProcentEmp());
             String procentEmpToString = calculator.getProcent(task.getEstimation(), procentEmp);
             task.setProcentEmp(procentEmpToString);
 
+            String name = webRequest.getParameter("name");
+            String description = webRequest.getParameter("description");
+
+            int task_id = projectHandler.createTask(name, procentDays, procentHours, procentPrices, description);
 
             this.tasks.add(task);
             model.addAttribute("task",task);
@@ -155,7 +159,7 @@ import java.util.List;
         }
 
         @PostMapping("/OpretSubTask")
-        public String createSubTask(@ModelAttribute SubTask subTask, Model model){
+        public String createSubTask(@ModelAttribute SubTask subTask, Model model, WebRequest webRequest){
             ProjectCalculator calculator = new ProjectCalculator();
 
             double procentDays = calculator.getDoubleFromString(this.tasks.get(0).getProcentDays());
@@ -166,13 +170,18 @@ import java.util.List;
             String procentHoursToString = calculator.getProcent(subTask.getEstimation(), procentHours);
             subTask.setProcentHours(procentHoursToString);
 
-            double procentPrice = calculator.getDoubleFromString(this.tasks.get(0).getProcentPrices());
-            String procentPriceToString = calculator.getProcent(subTask.getEstimation(),procentPrice);
+            double procentPrices = calculator.getDoubleFromString(this.tasks.get(0).getProcentPrices());
+            String procentPriceToString = calculator.getProcent(subTask.getEstimation(),procentPrices);
             subTask.setProcentPrices(procentPriceToString);
 
             double procentEmp = calculator.getDoubleFromString(this.tasks.get(0).getProcentEmp());
             String procentEmpToString = calculator.getProcent(subTask.getEstimation(), procentEmp);
             subTask.setProcentEmp(procentEmpToString);
+
+            String name = webRequest.getParameter("name");
+            String description = webRequest.getParameter("description");
+
+            int sub_task_id = projectHandler.createSubTask(name, procentDays, procentHours, procentPrices, description);
 
             this.subTasks.add(subTask);
             model.addAttribute("subTask",subTask);

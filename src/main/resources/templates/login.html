@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>Login</title>
-    <link href="stylesheet.css" rel="stylesheet">
-    <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: lightblue">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">ProjektKalkulationsVærktøj</a>
+        </div>
+    </div>
+</nav>
 <div class="row">
     <div class="col-lg-3"></div>
     <div class="col-lg-4">
@@ -19,8 +27,8 @@
                 <label for="password">Kodeord</label><br>
                 <input type="password" id="password" name="password"><br><br>
                 <input type="submit" value="Login">
+                <input formmethod="get" formaction="/register" type="submit" value="Registrer">
             </form><br>
-            <a href="/register"><p>Registrer ny bruger</p></a>
         </div>
     </div>
     <div class="col-lg-3"></div>

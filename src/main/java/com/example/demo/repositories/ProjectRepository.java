@@ -22,13 +22,13 @@ public class ProjectRepository {
         return bres;
     }
 
-    public int createProject(String ProjectName, String description, String startDay, String endDay, int dayPrice,
+    public int createProject(String projectName, String description, String startDay, String endDay, int dayPrice,
                              int numberOfemp, int totalPrice, int workingDays, int workingHour){
         String insertStatement = "INSERT INTO project(name, day_price, total_Price, start_date, end_date, decription, days, hours, numbers_Ofemp) VALUES (?,?,?,?,?,?,?,?,?)";
         int project_id = -1;
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(insertStatement);
-            preparedStatement.setString(1,ProjectName);
+            preparedStatement.setString(1,projectName);
             preparedStatement.setInt(2,dayPrice);
             preparedStatement.setString(3, String.valueOf(totalPrice));
             preparedStatement.setString(4,startDay);
@@ -68,17 +68,17 @@ public class ProjectRepository {
         return sub_project_id;
     }
 
-    public int createTask() {
-        String insertStatement = "INSERT INTO task(name, days, sub_project_id, hours, price, description) VALUES (?,?,?,?,?,?)";
+    public int createTask(String name, double procentDays, double procentHours, double procentPrices, String description) {
+        String insertStatement = "INSERT INTO task(name, days, hours, price, description) VALUES (?,?,?,?,?)";
         int task_id = -1;
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(insertStatement);
-            preparedStatement.setString(1, "");
-            preparedStatement.setInt(2, 0);
-            preparedStatement.setInt(3,0);
-            preparedStatement.setInt(4, 0);
-            preparedStatement.setInt(5, 0);
-            preparedStatement.setString(6, "");
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, String.valueOf(procentDays));
+            preparedStatement.setString(3, String.valueOf(procentHours));
+            preparedStatement.setString(4, String.valueOf(procentPrices));
+            preparedStatement.setString(5, description);
+
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
@@ -87,18 +87,19 @@ public class ProjectRepository {
         return task_id;
     }
 
-    public int createSubTask(int task_id){
-        String insertStatement = "INSERT INTO sub_task(sub_task_id, name, days, task_id, hours, price, description) VALUES(?,?,?,?,?,?,?)";
+    public int createSubTask(String name, double procentDays, double procentHours, double procentPrices, String description){
+        String insertStatement = "INSERT INTO sub_task(name, days, hours, price, description) VALUES(?,?,?,?,?)";
         int sub_task_id =-1;
         try{
             PreparedStatement preparedStatement = connection.prepareStatement(insertStatement);
-            preparedStatement.setString(1,"");
-            preparedStatement.setInt(2,0);
-            preparedStatement.setInt(3,0);
-            preparedStatement.setInt(4,task_id);
-            preparedStatement.setInt(5,0);
-            preparedStatement.setInt(6,0);
-            preparedStatement.setString(7,"");
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, String.valueOf(procentDays));
+            preparedStatement.setString(3, String.valueOf(procentHours));
+            preparedStatement.setString(4, String.valueOf(procentPrices));
+            preparedStatement.setString(5, description);
+
+            preparedStatement.executeUpdate();
+
         }catch (SQLException e) {
             System.out.println("SubTask creation failed=" + e.getMessage());
         }
