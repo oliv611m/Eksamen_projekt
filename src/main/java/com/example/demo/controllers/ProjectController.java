@@ -41,32 +41,12 @@ import java.util.List;
         public String createProject(@ModelAttribute Project project, Model model, WebRequest webRequest){
             ResultSet resultSet;
             ProjectCalculator calculator = new ProjectCalculator();
-        /*
 
-
-        int workingDays = calculator.getWorkingDays(project.getStartDay(),project.getEndDay());
-        project.setWorkingDays(workingDays);
-
-        int workingHours = calculator.getWorkingHours(workingDays);
-        project.setWorkingHours(workingHours);
-
-        int totalPrice = calculator.getTotalPrice(workingDays, project.getDayPrice());
-        project.setTotalPrice(totalPrice);
-
-
-         */
             String projectName = webRequest.getParameter("projectName");
             String description = webRequest.getParameter("description");
             String startDay = webRequest.getParameter("startDay");
             String endDay = webRequest.getParameter("endDay");
-            /*
-            String year = webRequest.getParameter("year");
-            String month = webRequest.getParameter("month");
-            String day = webRequest.getParameter("day");
-            String startDay = checkUserInput.checkDate(year,month,day);
-            String endDay = checkUserInput.checkDate(year,month,day);
 
-             */
             int numberOfemp = Integer.parseInt(webRequest.getParameter("numberOfemp"));
             int dayPrice = Integer.parseInt(webRequest.getParameter("dayPrice"));
 

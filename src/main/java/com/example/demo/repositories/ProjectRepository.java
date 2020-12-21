@@ -38,7 +38,6 @@ public class ProjectRepository {
             preparedStatement.setString(8, String.valueOf(workingHour));
             preparedStatement.setString(9, String.valueOf(numberOfemp));
 
-
             preparedStatement.executeUpdate();
 
         }catch (SQLException e){
@@ -58,7 +57,6 @@ public class ProjectRepository {
             preparedStatement.setString(4,procentEmp);
             preparedStatement.setString(5,procentPrices);
             preparedStatement.setString(6,description);
-
 
             preparedStatement.executeUpdate();
 

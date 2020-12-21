@@ -57,54 +57,5 @@ public class Project {
 
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
-/*
-    public String getYearStart(){
-        String[] arr = startDay.split("-");
-        if (arr.length == 3){
-            return arr[0];
-        }
-        return "";
-    }
 
-    public String getMonthStart(){
-        String[] arr = startDay.split("-");
-        if (arr.length == 3){
-            return arr[1];
-        }
-        return "";
-    }
-
-    public String getDayStart(){
-        String[] arr = startDay.split("-");
-        if (arr.length == 3){
-            return arr[2];
-        }
-        return "";
-    }
-
-    public String getYearEnd(){
-        String[] arr = endDay.split("-");
-        if (arr.length == 3){
-            return arr[0];
-        }
-        return "";
-    }
-
-    public String getMonthEnd(){
-        String[] arr = endDay.split("-");
-        if (arr.length == 3){
-            return arr[1];
-        }
-        return "";
-    }
-
-    public String getDayEnd(){
-        String[] arr = endDay.split("-");
-        if (arr.length == 3){
-            return arr[2];
-        }
-        return "";
-    }
-
- */
 }
