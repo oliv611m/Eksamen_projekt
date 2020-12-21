@@ -1,16 +1,41 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Create Task</title>
-    <link href="stylesheet.css" rel="stylesheet">
+    <title>Task</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
-<form action="#" th:action="@{/OpretTask}" th:object="${task}" method="post">
-    <p>Name : <input type="text" th:field="*{name}"></p>
-    <p>Description : <input type="text" th:field="*{description}"></p>
-    <p>Estimation : <input type="text" th:field="*{estimation}"></p>
-    <p><input type="submit" value="Opret en task"></p>
+<body style="background-color: lightblue">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">ProjektKalkulationsVærktøj</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="brand"><a href="/profile">Profil</a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log ud</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="row">
+    <div class="col-lg-5"></div>
+    <div class="col-lg-3">
+        <div style="alignment: center">
+            <h1>Opret task</h1>
+<form action="#" th:action="@{/OpretTask}" th:object="${task}" method="post" style="border: solid;border-width: 5px; padding: 20px">
+    <p>Task name : <br><input type="text" th:field="*{name}"></p>
+    <p>Task description : <input type="text" th:field="*{description}"></p>
+    <p>Task estimation : <input type="text" th:field="*{estimation}"></p>
+    <p><input type="submit" value="Opret task"></p>
 </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

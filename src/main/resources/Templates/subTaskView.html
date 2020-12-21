@@ -1,11 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Sub task view</title>
-    <link href="stylesheet.css" rel="stylesheet">
+    <title>Subtaskview</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
-<body>
+<body style="background-color: lightblue">
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/login">ProjektKalkulationsVærktøj</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="brand"><a href="/OpretProjekt">Opret nyt Projekt</a>
+            </li>
+            <li class="brand"><a href="/profile">Profil</a> </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/logout"><span class="glyphicon glyphicon-log-out"></span> Log ud</a></li>
+        </ul>
+    </div>
+</nav>
 <h1>sub task</h1>
 <p th:text="'Sub task name: ' +${subTask.name}"/>
 <p th:text="'Description: ' +${subTask.description}"/>
@@ -15,7 +33,11 @@
 <p th:text="'Prices: ' +${subTask.procentPrices}"/>
 <p th:text="'Number of employee: ' +${subTask.procentEmp}"/>
 
-<a href="/project">Se hele dit project</a>
-<a href="/OpretSubTask">Opret en ny sub task</a>
+<br>
+<br>
+<form method="get" action="/project">
+    <input type="submit" value="Se hele dit projekt"/>
+</form>
+
 </body>
 </html>
